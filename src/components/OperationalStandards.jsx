@@ -133,6 +133,7 @@ export default function OperationalStandards() {
   const [cardWidth, setCardWidth] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
   const firstCardRef = useRef(null);
+  const scrollContainerRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -168,9 +169,25 @@ export default function OperationalStandards() {
     }
   }, [maxSlide, current]);
 
-  const goTo = (idx) => setCurrent(Math.max(0, Math.min(idx, maxSlide)));
+  const goTo = (idx) => {
+    const newIdx = Math.max(0, Math.min(idx, maxSlide));
+    setCurrent(newIdx);
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        left: newIdx * (cardWidth + GAP),
+        behavior: "smooth",
+      });
+    }
+  };
 
-  const translateX = current * (cardWidth + GAP);
+  const handleScroll = () => {
+    if (!scrollContainerRef.current || cardWidth === 0) return;
+    const scrollLeft = scrollContainerRef.current.scrollLeft;
+    const newCurrent = Math.round(scrollLeft / (cardWidth + GAP));
+    if (newCurrent !== current && newCurrent >= 0 && newCurrent <= maxSlide) {
+      setCurrent(newCurrent);
+    }
+  };
 
   return (
     <section id="about" className="bg-[#CADCF2] pt-16 lg:pt-24 pb-6 lg:pb-8">
@@ -215,26 +232,25 @@ export default function OperationalStandards() {
             </div>
           </div>
 
-          {/* ── Slider track (clips overflow) ── */}
-          <div className="overflow-hidden -mx-1 px-1">
-            <div
-              className="flex transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
-              style={{
-                gap: `${GAP}px`,
-                transform: `translateX(-${translateX}px)`,
-              }}
-            >
-              {CARDS.map((card, i) => (
-                <div
-                  key={card.id}
-                  ref={i === 0 ? firstCardRef : null}
-                  style={{ width: `calc((100% - ${GAP * (visibleCount - 1)}px) / ${visibleCount})` }}
-                  className="flex-shrink-0"
-                >
-                  <Card {...card} />
-                </div>
-              ))}
-            </div>
+          {/* ── Slider track ── */}
+          <div
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-1 px-1 py-4 -my-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            style={{ gap: `${GAP}px` }}
+          >
+            {CARDS.map((card, i) => (
+              <div
+                key={card.id}
+                ref={i === 0 ? firstCardRef : null}
+                style={{
+                  flex: `0 0 calc((100% - ${GAP * (visibleCount - 1)}px) / ${visibleCount})`,
+                }}
+                className="snap-start"
+              >
+                <Card {...card} />
+              </div>
+            ))}
           </div>
 
           {/* ── Dot indicators ── */}

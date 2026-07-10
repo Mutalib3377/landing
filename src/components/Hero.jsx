@@ -1,4 +1,5 @@
 import { ArrowRight, Zap, Activity, Brain, Stethoscope, Clock, Users } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 import heroVideo from "../assets/hero-bg.mp4";
 
@@ -13,6 +14,20 @@ const HERO_VIDEO_SRC = heroVideo;
 const HERO_POSTER = "";
 
 export default function Hero() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // Mobile browsers (especially iOS Safari) can be very strict about autoplay.
+    // Forcing defaultMuted and explicitly calling play() ensures it works in most conditions.
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(error => {
+        console.log("Video auto-play was prevented by the browser:", error);
+      });
+    }
+  }, []);
+
   return (
     <section
       id="platform"
@@ -20,6 +35,7 @@ export default function Hero() {
     >
       {/* ── VIDEO BACKGROUND ── */}
       <video
+        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
         src={HERO_VIDEO_SRC}
         poster={HERO_POSTER}
