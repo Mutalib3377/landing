@@ -1,17 +1,13 @@
 import { ArrowRight, Zap, Activity, Brain, Stethoscope, Clock, Users } from "lucide-react";
 
+import heroVideo from "../assets/hero-bg.mp4";
+
 /*
  * ── VIDEO BACKGROUND ──────────────────────────────────────────────────────
- * Replace HERO_VIDEO_SRC with your own video URL or a local file path.
- *
- * To use a LOCAL file:
- *   1. Drop your .mp4 file into /public/  (e.g. /public/hero-bg.mp4)
- *   2. Set HERO_VIDEO_SRC = "/hero-bg.mp4"
- *
- * Current: free stock telemedicine/medical-tech video (Pexels)
+ * Imported securely via Vite asset pipeline to ensure Vercel serves it correctly.
  * ─────────────────────────────────────────────────────────────────────────
  */
-const HERO_VIDEO_SRC = "/hero-bg.mp4";
+const HERO_VIDEO_SRC = heroVideo;
 
 /* Fallback poster shown before video loads */
 const HERO_POSTER = "";
