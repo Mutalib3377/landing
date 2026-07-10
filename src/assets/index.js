@@ -31,6 +31,7 @@ import medrays from "./medrays.png";
 import qarevo from "./Qarevo.png";
 import qLogo from "./QLogo.png";
 import thumbnail from "./thumbnail.jpeg";
+import dashboardPreview from "./dashboard_preview.png";
 
 export {
   airbnb,
@@ -66,4 +67,5 @@ export {
   qarevo,
   qLogo,
   thumbnail,
+  dashboardPreview,
 };

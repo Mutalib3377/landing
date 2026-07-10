@@ -1,35 +1,23 @@
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import OperationalStandards from "./components/OperationalStandards";
+import DigitalCareJourney from "./components/DigitalCareJourney";
+import ExecutiveLeadership from "./components/ExecutiveLeadership";
+import EnterpriseInquiry from "./components/EnterpriseInquiry";
+import Footer from "./components/Footer";
+import FAQ from "./components/FAQ";
 
-import styles from "./style";
-import { PhySchutz, Business, CardDeal, CTA, CyberSchutz, Footer, Navbar, Schulung, Stats, Testimonials, Hero } from "./components";
-
-const App = () => (
-  <div className="bg-primary-gradient w-full overflow-hidden">
-    <div className={`bg-primary-gradient ${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={` ${styles.boxWidth}`}>
-        <Navbar />
-      </div>
+export default function App() {
+  return (
+    <div className="w-full font-inter">
+      <Navbar />
+      <Hero />
+      <OperationalStandards />
+      <DigitalCareJourney />
+      <ExecutiveLeadership />
+      <EnterpriseInquiry />
+      <FAQ />
+      <Footer />
     </div>
-
-    <div className={`bg-primary-gradient ${styles.flexStart}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Hero />
-      </div>
-    </div>
-    
-    <div className={`bg-primary-gradient ${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Stats />
-        <Business />
-        <CyberSchutz />
-        <PhySchutz />
-        <Schulung />
-        <CardDeal />
-        <Testimonials />
-        <CTA />
-        <Footer />
-      </div>
-    </div>
-  </div>
-);
-
-export default App;
+  );
+}

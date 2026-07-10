@@ -1,33 +1,30 @@
-/* eslint-env node */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
-  mode: "jit",
   theme: {
     extend: {
       colors: {
-        primary: "#6C7882",
-        secondary: "#00f6ff",
-        dimWhite: "rgba(255, 255, 255, 0.7)",
-        dimBlue: "rgba(9, 151, 124, 0.1)",
-      },
-      backgroundImage: {
-        "primary-gradient":
-            "linear-gradient(135deg, #6C7882 0%, #4F9A4D 60%, #C8B45F 100%)",
+        navy:         "#0E2A5C",
+        accent:       "#2F6FE0",
+        "section-blue":"#EAF3FC",
+        "text-dark":  "#0B1B33",
+        "text-muted": "#5B6B82",
+        "border-light":"#DCE6F5",
+        "card-bg":    "#F5F9FE",
       },
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
-    },
-    screens: {
-      xs: "480px",
-      ss: "620px",
-      sm: "768px",
-      md: "1060px",
-      lg: "1200px",
-      xl: "1700px",
+      backgroundImage: {
+        "hero-gradient":
+          "linear-gradient(135deg, #BFE0F5 0%, #D9ECFA 55%, #EAF3FC 100%)",
+      },
+      borderRadius: {
+        "2xl": "1rem",
+        "3xl": "1.25rem",
+        "4xl": "1.5rem",
+      },
     },
   },
   plugins: [],
 };
-

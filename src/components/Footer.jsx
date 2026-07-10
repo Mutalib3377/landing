@@ -1,56 +1,88 @@
-import styles from '../style';
-import { qLogo } from '../assets';
-import { footerLinks, socialMedia } from '../constants';
+const FOOTER_LINKS = [
+  {
+    heading: "Navigation",
+    links: [
+      { label: "Platform Overview", href: "#platform" },
+      { label: "About Us",          href: "#about"    },
+      { label: "Our Vision",        href: "#vision"   },
+      { label: "Our Team",          href: "#team"     },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { label: "Privacy Policy",    href: "#" },
+      { label: "Terms of Service",  href: "#" },
+      { label: "Cookie Policy",     href: "#" },
+    ],
+  },
+  {
+    heading: "Contact",
+    links: [
+      { label: "Contact Support",   href: "#enterprise" },
+      { label: "Media Kit",         href: "#"           },
+      { label: "Career Opportunities", href: "#"        },
+    ],
+  },
+];
 
-
-const Footer = () => {
+export default function Footer() {
   return (
-    <section className={`${styles.flexCenter} ${styles.paddingY} flex-col`}>
-      <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>
-        <div className="flex-1 flex flex-col justify-start mr-10">
-          <img 
-            src={qLogo}
-            alt="hoobank"
-            className="w-[200px] h-[150px] object-fill"
-          />
-          <p className={`${styles.paragraph} mt-4 max-w-[310px]`}>Eine neue Möglichkeit, schnelle, erschwingliche und zuverlässige Dienste zu erhalten.</p>
-        </div>
+    <footer id="footer" className="bg-[#0B1B33] border-t border-[#0B1B33]">
+      <div className="w-[90%] max-w-[1480px] mx-auto pt-20 pb-10">
 
-        <div className="flex-[1.5] w-full flex flex-row justify-between flex-wrap md:mt-0 mt-10">
-          {footerLinks.map((footerLink) => (
-            <div key={footerLink.key} className="flex flex-col ss:my-0 my-4 min-w-[150px]">
-              <h4 className="font-poppins font-medium text-[18px] leading-[27px] text-white">
-                {footerLink.title}
-              </h4>
-              <ul className="list-none mt-4">
-                {footerLink.links.map((link, index) => (
-                  <li key={link.name} className={`font-poppins font-normal text-[16px] leading-[24px] text-dimWhite hover:text-secondary cursor-pointer ${index !== footerLink.links.length - 1 ? 'mb-4' : 'mb-0'}`}>
-                    {link.name}
+        {/* ── Top row ── */}
+        <div className="grid md:grid-cols-4 gap-12 lg:gap-16 mb-16">
+
+          {/* Brand column */}
+          <div className="md:col-span-1">
+            <a href="#" className="inline-block mb-4">
+              <img 
+                src="/Screenshot 2026-04-24 at 10.24.49 8.png" 
+                alt="Qarevo Health Logo" 
+                className="h-8 md:h-10 w-auto object-contain"
+              />
+            </a>
+            <p className="text-[#8B9BB4] text-[14.5px] leading-[1.75] max-w-[260px]">
+              Leading the transformation of digital care with intelligent
+              infrastructure and sovereign AI.
+            </p>
+          </div>
+
+          {/* Link columns */}
+          {FOOTER_LINKS.map(({ heading, links }) => (
+            <div key={heading}>
+              <p className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-[#2F6FE0] mb-5">
+                {heading}
+              </p>
+              <ul className="space-y-3.5">
+                {links.map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      className="text-[14.5px] text-[#DCE6F5] hover:text-white hover:underline transition-all"
+                    >
+                      {label}
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-      </div>
-      <div className="w-full flex justify-between items-center md:flex-row flex-col pt-6 border-t-[1px] border-t-[#3F3E45]">
-        <p className="font-poppins font-normal text-center text-[18px] leading-[27px] text-white">
-            2026 Qarevo Health GmbH All Rights Reserved
-        </p>
 
-        <div className="flex flex-row md:mt-0 mt-6">
-          {socialMedia.map((social, index) => (
-            <img 
-              key={social.id}
-              src={social.icon}
-              alt={social.id}
-              className={`w-[21px] h-[21px] object-contain cursor-pointer ${index !== socialMedia.length -1 ? 'mr-6' : 'mr-0'}`}
-            />
-          ))}
+        {/* ── Divider ── */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[13.5px] text-[#8B9BB4]">
+            © {new Date().getFullYear()} Qarevo Health. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-[13.5px] text-[#8B9BB4] hover:text-white transition-colors">Twitter</a>
+            <a href="#" className="text-[13.5px] text-[#8B9BB4] hover:text-white transition-colors">LinkedIn</a>
+          </div>
         </div>
-      </div>
-    </section>
-  )
-}
 
-export default Footer;
+      </div>
+    </footer>
+  );
+}
