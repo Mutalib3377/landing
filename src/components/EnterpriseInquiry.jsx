@@ -92,8 +92,7 @@ export default function EnterpriseInquiry() {
 
         {/* ── Outer container card ── */}
         <div
-          className="bg-[#F7F9FC] border border-white/60 shadow-[0_8px_48px_rgba(14,42,92,0.10)] px-10 lg:px-16 py-14 lg:py-20"
-          style={{ borderRadius: "40px" }}
+          className="bg-[#F7F9FC] border border-white/60 shadow-[0_8px_48px_rgba(14,42,92,0.10)] px-5 py-8 md:px-10 lg:px-16 md:py-14 lg:py-20 rounded-[24px] md:rounded-[40px]"
         >
           <div className="grid lg:grid-cols-[42%_58%] gap-8 lg:gap-12 items-center">
 
@@ -129,10 +128,9 @@ export default function EnterpriseInquiry() {
             </div>
 
             {/* ── RIGHT: Floating form card with surrounding whitespace ── */}
-            <div className="flex items-center justify-end pl-2 lg:pl-6 pr-1 lg:pr-2">
+            <div className="flex items-center justify-center lg:justify-end md:pl-2 lg:pl-6 md:pr-1 lg:pr-2">
               <div
-                className="bg-white shadow-[0_8px_40px_rgba(14,42,92,0.10)] px-8 lg:px-10 py-10 lg:py-12 w-full max-w-[520px]"
-                style={{ borderRadius: "32px" }}
+                className="bg-white shadow-[0_8px_40px_rgba(14,42,92,0.10)] px-6 py-8 md:px-8 lg:px-10 md:py-10 lg:py-12 w-full max-w-[520px] rounded-[24px] md:rounded-[32px]"
               >
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center text-center py-8 gap-4">
@@ -148,7 +146,7 @@ export default function EnterpriseInquiry() {
                   <form onSubmit={handleSubmit} className="space-y-7">
 
                     {/* Row 1: Full Name + Organization */}
-                    <div className="grid grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                       <div>
                         <FieldLabel>Full Name</FieldLabel>
                         <input
