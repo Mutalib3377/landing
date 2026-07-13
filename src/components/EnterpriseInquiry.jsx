@@ -116,7 +116,7 @@ export default function EnterpriseInquiry() {
                 <ContactRow
                   icon={Globe}
                   title="Global HQ"
-                  value="Main Digital Campus, Cloud Region 01"
+                  value="Lagos, Nigeria"
                 />
                 <ContactRow
                   icon={Mail}
